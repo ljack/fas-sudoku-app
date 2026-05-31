@@ -1,8 +1,8 @@
 // AUTO-GENERATED - DO NOT EDIT DIRECTLY
 import { FeatureRegistry } from './registry';
 
-import { sudokuFeature } from '../features/sudoku/feature';
+import { leaderboardFeature } from '../features/leaderboard/feature';
 
 export function registerActiveFeatures(registry: FeatureRegistry) {
-  registry.register(sudokuFeature);
+  registry.register(leaderboardFeature);
 }

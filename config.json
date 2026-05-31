@@ -1,5 +1,6 @@
 {
   "features": {
-    "sudoku": true
+    "sudoku": true,
+    "leaderboard": true
   }
 }

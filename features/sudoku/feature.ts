@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import crypto from 'crypto';
+import fs from 'fs';
 import { FeatureModule, FeatureContext } from '../../core/registry';
 
 // Standard backtracking Sudoku solver
@@ -120,8 +121,29 @@ export const sudokuFeature: FeatureModule = {
 
     // 4. RESTful URL points to a specific game board
     context.router.get('/sudoku/:id', (req, res) => {
-      // Send the client HTML file
-      res.sendFile(path.join(publicPath, 'index.html'));
+      fs.readFile(path.join(publicPath, 'index.html'), 'utf8', (err, html) => {
+        if (err) {
+          return res.status(500).send("HTML template load error.");
+        }
+        
+        let injectStr = '';
+        
+        // Dynamically inject leaderboard resources if enabled
+        try {
+          const configJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../../config.json'), 'utf8'));
+          if (configJson.features && configJson.features.leaderboard === true) {
+            injectStr += `
+  <link rel="stylesheet" href="/leaderboard-client/inject.css">
+  <script src="/leaderboard-client/inject.js" defer></script>
+            `;
+          }
+        } catch (e) {
+          console.warn('[Sudoku] Warning reading features config for injections:', e);
+        }
+        
+        const finalHtml = html.replace('<!-- FAS_INJECT -->', injectStr);
+        res.send(finalHtml);
+      });
     });
 
     // 5. REST API: Fetch current status

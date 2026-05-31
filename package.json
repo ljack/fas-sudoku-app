@@ -1,7 +1,7 @@
 {
-  "name": "fas-framework",
+  "name": "fas-sudoku-app",
   "version": "1.0.0",
-  "description": "FAS-Compliant Application Framework",
+  "description": "FAS-Compliant Sudoku Application",
   "main": "dist/core/engine.js",
   "scripts": {
     "build:prep": "node scripts/build_prep.js",

@@ -1,5 +1,5 @@
 {
-  "name": "fas-framework",
+  "name": "fas-sudoku-app",
   "fas_version": "1.4.0",
   "project_type": "backend-express-ts",
   "rules": {

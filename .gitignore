@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.remnant_temp/
+postgres_data/
+.env
+package-lock.json
+security_reports/
+.DS_Store

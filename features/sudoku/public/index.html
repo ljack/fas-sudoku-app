@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Cosmic Sudoku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/sudoku-client/styles.css">
+</head>
+<body>
+  <div class="stars-bg"></div>
+  <div class="glow-sphere orange"></div>
+  <div class="glow-sphere purple"></div>
+
+  <div class="container">
+    <header>
+      <h1>COSMIC <span class="accent-text">SUDOKU</span></h1>
+      <p class="subtitle">A stateless, zero-remnant FAS demonstration game</p>
+    </header>
+
+    <main class="app-card">
+      <div class="status-panel">
+        <span class="badge" id="game-status">Loading board...</span>
+        <span class="game-id-text">ID: <span id="game-id">...</span></span>
+      </div>
+
+      <div class="sudoku-board" id="sudoku-grid">
+        <!-- 81 cells will be rendered programmatically here -->
+      </div>
+
+      <div class="controls-panel">
+        <button class="btn btn-secondary" id="btn-reset">Reset</button>
+        <button class="btn btn-primary" id="btn-new">New Game</button>
+        <button class="btn btn-accent animate-pulse" id="btn-solve">Solve Game</button>
+      </div>
+    </main>
+
+    <footer>
+      <p>Share this restful URL with friends to play or view together</p>
+    </footer>
+  </div>
+
+  <script src="/sudoku-client/app.js"></script>
+</body>
+</html>

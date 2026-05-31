@@ -1,0 +1,29 @@
+{
+  "name": "fas-framework",
+  "version": "1.0.0",
+  "description": "FAS-Compliant Application Framework",
+  "main": "dist/core/engine.js",
+  "scripts": {
+    "build:prep": "node scripts/build_prep.js",
+    "build": "npm run build:prep && tsc && node scripts/copy_assets.js",
+    "dev": "npm run build:prep && tsx watch core/engine.ts",
+    "start": "node dist/core/engine.js",
+    "feature:scaffold": "node scripts/feature_manager.js scaffold",
+    "feature:enable": "node scripts/feature_manager.js enable",
+    "feature:disable": "node scripts/feature_manager.js disable",
+    "feature:delete": "node scripts/feature_manager.js delete",
+    "test:remnants": "node scripts/verify_remnants.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "@types/pg": "^8.11.6",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.2"
+  }
+}

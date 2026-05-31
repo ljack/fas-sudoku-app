@@ -1,0 +1,29 @@
+{
+  "name": "fas-framework",
+  "fas_version": "1.4.0",
+  "project_type": "backend-express-ts",
+  "rules": {
+    "core_isolation": {
+      "path": "core",
+      "restrictions": {
+        "forbidden_imports": ["features/**/*"],
+        "reason": "Core modules must never statically import or depend on sandboxed feature code."
+      }
+    },
+    "feature_sandboxing": {
+      "path": "features",
+      "restrictions": {
+        "no_cross_talk": true,
+        "allowed_imports": ["core/**/*"],
+        "reason": "Features must remain isolated from each other. Communication must happen via Core event bus or database bridges."
+      }
+    },
+    "zero_remnants": {
+      "toggles": "config.json",
+      "requirements": {
+        "dynamic_bootstrapping": true,
+        "clean_removal": "Deleting a features/ directory and disabling its flag must leave the application fully functional."
+      }
+    }
+  }
+}

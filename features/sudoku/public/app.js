@@ -215,3 +215,18 @@ btnNew.addEventListener('click', () => {
 
 // Run
 init();
+
+// Listen for external sync events from plugins (Co-Op)
+window.addEventListener('sudoku:externalMove', (e) => {
+  const { grid, status } = e.detail;
+  currentGrid = grid;
+  updateStatusBadge(status);
+  renderBoard();
+});
+
+window.addEventListener('sudoku:externalSolve', (e) => {
+  const { grid, status } = e.detail;
+  currentGrid = grid;
+  updateStatusBadge(status);
+  renderBoard();
+});

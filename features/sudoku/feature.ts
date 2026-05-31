@@ -137,6 +137,12 @@ export const sudokuFeature: FeatureModule = {
   <script src="/leaderboard-client/inject.js" defer></script>
             `;
           }
+          if (configJson.features && configJson.features.coop === true) {
+            injectStr += `
+  <link rel="stylesheet" href="/coop-client/inject.css">
+  <script src="/coop-client/inject.js" defer></script>
+            `;
+          }
         } catch (e) {
           console.warn('[Sudoku] Warning reading features config for injections:', e);
         }
@@ -195,6 +201,9 @@ export const sudokuFeature: FeatureModule = {
 
         await context.db.query('UPDATE sudoku_games SET grid = $1, status = $2 WHERE id = $3', [newGridStr, status, gameId]);
         
+        // Emit event for real-time synchronization (co-op)
+        context.eventBus.emit('sudoku:move', { gameId, cellIndex, value, grid: newGridStr, status });
+
         res.json({ success: true, grid: newGridStr, status });
       } catch (err: any) {
         res.status(500).json({ success: false, error: err.message });
@@ -215,6 +224,9 @@ export const sudokuFeature: FeatureModule = {
 
         await context.db.query('UPDATE sudoku_games SET grid = $1, status = $2 WHERE id = $3', [solvedGrid, 'solved', gameId]);
         
+        // Emit solve event for real-time synchronization (co-op)
+        context.eventBus.emit('sudoku:solve', { gameId, grid: solvedGrid, status: 'solved' });
+
         res.json({ success: true, grid: solvedGrid, status: 'solved' });
       } catch (err: any) {
         res.status(500).json({ success: false, error: err.message });

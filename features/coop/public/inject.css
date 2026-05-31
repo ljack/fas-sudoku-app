@@ -1,0 +1,44 @@
+/* Peer Focus Highlight Outline */
+.peer-focus-outline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  pointer-events: none;
+  border-radius: 4px;
+  z-index: 20;
+  box-sizing: border-box;
+  animation: borderAppear 0.2s ease-out;
+}
+
+/* Peer Username Tag Bubble */
+.peer-focus-tag {
+  position: absolute;
+  top: -18px;
+  left: -2px;
+  padding: 2px 6px;
+  border-radius: 4px 4px 4px 0;
+  color: hsl(230, 40%, 10%); /* High contrast dark text */
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 21;
+}
+
+@keyframes borderAppear {
+  from {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

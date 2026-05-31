@@ -1,6 +1,7 @@
 {
   "features": {
     "sudoku": true,
-    "leaderboard": true
+    "leaderboard": true,
+    "coop": true
   }
 }

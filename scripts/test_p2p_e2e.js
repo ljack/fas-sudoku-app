@@ -26,13 +26,13 @@ const puppeteer = require('puppeteer');
     hostMsgCallback = (data) => {
       hostPage.evaluate((d) => {
         if (window.receiveMockMessageFromNode) window.receiveMockMessageFromNode(d);
-      }, data);
+      }, data).catch(() => {});
     };
 
     clientMsgCallback = (data) => {
       clientPage.evaluate((d) => {
         if (window.receiveMockMessageFromNode) window.receiveMockMessageFromNode(d);
-      }, data);
+      }, data).catch(() => {});
     };
 
     // Inject Mock WebRTC on Host
@@ -280,6 +280,8 @@ const puppeteer = require('puppeteer');
     console.error('❌ [E2E Test] E2E verification failed:', err);
     process.exit(1);
   } finally {
+    hostMsgCallback = null;
+    clientMsgCallback = null;
     try {
       await browser.close();
     } catch (e) {}

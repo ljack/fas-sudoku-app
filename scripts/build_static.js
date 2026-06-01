@@ -15,6 +15,7 @@ const filesToCopy = [
   { src: '../features/sudoku/public/index.html', dest: 'index.html' },
   { src: '../features/sudoku/public/styles.css', dest: 'styles.css' },
   { src: '../features/sudoku/public/app.js', dest: 'app.js' },
+  { src: '../features/sudoku/public/qrcode.min.js', dest: 'qrcode.min.js' },
   { src: '../features/coop/public/inject.js', dest: 'inject.js' },
   { src: '../features/coop/public/inject.css', dest: 'inject.css' }
 ];
@@ -39,6 +40,7 @@ if (fs.existsSync(htmlPath)) {
   // Replace absolute assets paths with relative paths
   html = html.replace('/sudoku-client/styles.css', 'styles.css');
   html = html.replace('/sudoku-client/app.js', 'app.js');
+  html = html.replace('/sudoku-client/qrcode.min.js', 'qrcode.min.js');
   
   // Inject coop features statically (since there is no Express context replacement)
   const coopInject = `
